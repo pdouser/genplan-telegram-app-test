@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="ru" data-bs-theme="dark">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Genplan</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+  <script src="scripts.js"></script>
+</head>
+
+<body>
+
+  <nav class="navbar bg-body-tertiary fixed-top pb-1">
+    <div class="container-fluid">
+      <span class="navbar-brand">
+        <h2><i id="hamburger" class="bi bi-list px-2" type="button" data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions"></i></h2>
+      </span>
+
+      <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
+        aria-labelledby="offcanvasWithBothOptionsLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">GENPLAN</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <p>Информация по производству продукции.</p>
+          <div>
+            <p><i class="bi bi-person-circle"></i>
+              <span id="logged-user">User</span><br>
+          </div>
+          </p>
+          <span class="badge rounded-pill text-bg-danger">Версия 0.0.1</span>
+
+        </div>
+        <footer class="d-flex flex-wrap justify-content-center align-items-center py-1 my-2 border-top">
+          <div class="col-md-4 d-flex align-items-center">
+            <span class="mb-3 mb-md-0 text-body-secondary">© 2023-2024</span>
+          </div>
+        </footer>
+      </div>
+    </div>
+  </nav>
+
+  <section class="container section section__height">
+    <div class="container px-4 py-5" id="feature-1">
+      <div class="row g-4 pt-3 row-cols-1">
+        <h3 class="fs-2 pt-2 text-body-emphasis">
+          <div class="feature-icon text-white rounded-3">
+            <i class="bi bi-bar-chart-line"></i>
+          </div>
+          План-факт
+      </div>
+      <p>Столбчатая диаграмма по выпуску готовой продукции с обновлением данных в режиме реального времени.
+      </p>
+
+      <div class="input-group input-group-sm mb-1">
+        <span class="input-group-text">Дата запроса</span>
+        <input type="date" id="barchart-request-date" class="form-control" aria-label="date input"
+          aria-describedby="inputGroup-sizing-sm">
+      </div>
+
+      <div class="mb-1">
+        <label for="" class="form-label">Предприятие</label>
+        <select class="form-select form-select-md" name="" id="barchart-factory">
+          <option value="3000">БЗГА</option>
+          <option value="15638">ГТ</option>
+        </select>
+      </div>
+
+      <label for="" class="form-label">Категории изделий</label>
+      <select class="form-select form-select-md" multiple aria-label="multiple select" id="barchart-criteria-filter">
+        <option value="1" selected>Напольные плиты</option>
+        <option value="2">Столы встраиваемые</option>
+        <option value="3">Настольные плиты</option>
+        <option value="4">Воздухоочистители</option>
+        <option value="5">Духовки</option>
+      </select>
+
+      <div class="d-grid gap-2 py-4">
+        <button type="button" name="" id="barchart-apply" class="btn btn-primary rounded-0">Применить</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="container section section__height">
+    <div class="container px-4 py-5" id="feature-2">
+      <div class="row g-4 pt-3 row-cols-1">
+        <h3 class="fs-2 pt-2 text-body-emphasis">
+          <div class="feature-icon text-white rounded-3"> <i class="bi bi-graph-down text-white"></i></div>
+          Отклонения
+      </div>
+      <p>Накопительные отклонения по выпуску готовой продукции начиная с первого дня текущего месяца до
+        указанной даты запроса.</p>
+
+      <div class="input-group input-group-sm mb-1">
+        <span class="input-group-text">Дата запроса</span>
+        <input type="date" id="debt-request-date" class="form-control" aria-label="date input"
+          aria-describedby="inputGroup-sizing-sm">
+      </div>
+
+      <div class="mb-1">
+        <label for="" class="form-label">Предприятие</label>
+        <select class="form-select form-select-md" name="" id="debt-factory">
+          <option value="3000">БЗГА</option>
+          <option value="15638">ГТ</option>
+        </select>
+      </div>
+
+      <label for="" class="form-label">Категории изделий</label>
+      <select class="form-select form-select-md" multiple aria-label="multiple select" id="debt-criteria-filter">
+        <option value="1">Напольные плиты</option>
+        <option value="2">Столы встраиваемые</option>
+        <option value="3">Настольные плиты</option>
+        <option value="4">Воздухоочистители</option>
+        <option value="5">Духовки</option>
+      </select>
+
+      <div class="d-grid gap-2 py-4">
+        <button type="button" name="" id="debt-apply" class="btn btn-primary rounded-0">Применить</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="container section section__height section-last">
+    <div class="container px-4 py-3" id="feature-3">
+      <div class="row g-4 pt-3 row-cols-1">
+        <h3 class="fs-2 text-body-emphasis">
+          <div class="feature-icon text-white rounded-3"> <i class="bi bi-question-circle text-white"></i>
+          </div>
+          Справка
+      </div>
+      <p>Просмотр доступных команд и описание функций.</p>
+
+      <div class="d-grid gap-2 pt-3">
+        <button type="button" name="" id="help-apply" class="btn btn-primary rounded-0">Применить</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="container section section__height">
+    <div class="container px-4 py-5" id="feature-4">
+      <div class="row g-4 pt-3 row-cols-1">
+        <h3 class="fs-2 pt-2 text-body-emphasis">
+          <div class="feature-icon text-white rounded-3"> <i class="bi bi-graph-down text-white"></i></div>
+          Сообщения по подготовке производства
+      </div>
+      <p>Информация по подготовке производства на выбранный месяц.</p>
+
+      <div class="input-group input-group-sm mb-1">
+        <span class="input-group-text">Дата запроса</span>
+        <input type="date" id="debt-request-date" class="form-control" aria-label="date input"
+          aria-describedby="inputGroup-sizing-sm">
+      </div>
+
+      <input type="month" id="start" name="start" min="2018-03" value="2018-05" />
+
+      <div class="mb-1">
+        <label for="" class="form-label">Предприятие</label>
+        <select class="form-select form-select-md" name="" id="debt-factory">
+          <option value="3000">БЗГА</option>
+          <option value="15638">ГТ</option>
+        </select>
+      </div>
+
+      <label for="" class="form-label">Категории изделий</label>
+      <select class="form-select form-select-md" multiple aria-label="multiple select" id="debt-criteria-filter">
+        <option value="1">Напольные плиты</option>
+        <option value="2">Столы встраиваемые</option>
+        <option value="3">Настольные плиты</option>
+        <option value="4">Воздухоочистители</option>
+        <option value="5">Духовки</option>
+      </select>
+
+      <div class="d-grid gap-2 py-4">
+        <button type="button" name="" id="debt-apply" class="btn btn-primary rounded-0">Применить</button>
+      </div>
+    </div>
+  </section>
+
+  <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+    <div class="offcanvas-header">
+      <h5 id="offcanvasRightLabel">
+        <i class="bi bi-grid-3x3-gap-fill px-3"></i>Дополнительно:
+      </h5>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+
+      <div class="container px-4" id="icon-grid">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+          <div class="col d-flex align-items-start">
+            <div type="button" id="shifttasks-apply">
+              <i class="bi bi-table flex-shrink-0 me-1"></i>
+              <span>Очередность по графику (БЗГА)</span>
+            </div>
+          </div>
+          <div class="col d-flex align-items-start">
+            <div type="button" id="messages-apply">
+              <i class="bi bi-stickies-fill  flex-shrink-0 me-1"></i>
+              <span>Сообщения по подг. пр-ва (БЗГА)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <nav class="nav-down">
+    <a href="#feature-1" class="nav__link pb-3" id="barchart-nav-link">
+      <i class="nav-icon bi bi-bar-chart-line"></i>
+      <span class="nav__text">ПЛАН-ФАКТ</span>
+    </a>
+    <a href="#feature-2" class="nav__link pb-3">
+      <i class="nav-icon bi bi-graph-down text-white"></i>
+      <span class="nav__text">ОТКЛОНЕНИЯ</span>
+    </a>
+    <a href="#feature-3" class="nav__link pb-3">
+      <i class="nav-icon bi bi-question-circle text-white"></i>
+      <span class="nav__text">СПРАВКА</span>
+    </a>
+    <a href="#" class="nav__link pb-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+      aria-controls="offcanvasRight">
+      <i class="nav-icon bi bi-grid-3x3-gap-fill text-white"></i>
+      <span class="nav__text">ЕЩЕ</span>
+    </a>
+  </nav>
+
+  <script>
+    let tg = window.Telegram.WebApp;
+    window.onload = function () {
+      dateFormat();
+      scrollBarsConfigure();
+      if (tg.themeParams.bg_color == "#ffffff") {
+        document.documentElement.setAttribute('data-bs-theme', 'ligth');
+      }
+    }
+
+    Telegram.WebApp.onEvent('themeChanged', function () {
+      if (tg.themeParams.bg_color == "#ffffff") {
+        document.documentElement.setAttribute('data-bs-theme', 'ligth');
+      } else {
+        document.documentElement.setAttribute('data-bs-theme', 'dark');
+      }
+    });
+    tg.expand();
+    let barChartApplyButton = document.getElementById("barchart-apply");
+    let debtApplyButton = document.getElementById("debt-apply");
+    let helpApplyButton = document.getElementById("help-apply");
+    let shifttasksApplyButton = document.getElementById("shifttasks-apply");
+    let messagesApplyButton = document.getElementById("messages-apply");
+    let selectedBarchartCriteria = document.getElementById("barchart-criteria-filter");
+    let selectedDebtCriteria = document.getElementById("debt-criteria-filter");
+
+    addEventListener("resize", (event) => {
+      scrollBarsConfigure();
+    }
+    );
+
+    barChartApplyButton.addEventListener("click", () => {
+      let barChart = 'barChart';
+      let requestDate = document.getElementById("barchart-request-date").value;
+      let selectedFactory = document.getElementById("barchart-factory").value;
+      const selectedValues = Array.from(selectedBarchartCriteria.options)
+        .filter(option => option.selected)
+        .map(option => option.text);
+      let data = {
+        action: barChart,
+        localDate: new Date(requestDate).toISOString().substring(0, 10),
+        criteria: selectedValues,
+        factory: selectedFactory
+      };
+      tg.sendData(JSON.stringify(data));
+
+    });
+
+    debtApplyButton.addEventListener("click", () => {
+      let debt = 'debt';
+      let requestDate = document.getElementById("debt-request-date").value;
+      let selectedFactory = document.getElementById("debt-factory").value;
+      const selectedValues = Array.from(selectedDebtCriteria.options)
+        .filter(option => option.selected)
+        .map(option => option.text);
+      let data = {
+        action: debt,
+        localDate: new Date(requestDate).toISOString().substring(0, 10),
+        criteria: selectedValues,
+        factory: selectedFactory
+      };
+      tg.sendData(JSON.stringify(data));
+    });
+
+    helpApplyButton.addEventListener("click", () => {
+      let help = 'help';
+      let data = {
+        action: help,
+      };
+      tg.sendData(JSON.stringify(data));
+    });
+
+    shifttasksApplyButton.addEventListener("click", () => {
+      let shifttasks = 'shifttasks';
+      let data = {
+        action: shifttasks,
+      };
+      tg.sendData(JSON.stringify(data));
+    });
+
+    messagesApplyButton.addEventListener("click", () => {
+      let messages = 'messages';
+      let data = {
+        action: messages,
+      };
+      tg.sendData(JSON.stringify(data));
+    });
+
+  </script>
+
+</body>
+
+</html>
