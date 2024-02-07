@@ -1,3 +1,7 @@
+a {
+  all: unset;
+}
+
 .btn-primary,
 .btn-primary:hover,
 .btn-primary:visited {
