@@ -5,9 +5,9 @@ function dateFormat() {
   document.getElementById("debt-request-date").value = new Date()
     .toISOString()
     .substring(0, 10);
-    document.getElementById("prod-messages-request-date").value = new Date()
-    .toISOString()
-    .substring(0, 10);
+  document.getElementById("prod-messages-request-date").value = new Date()
+  .toISOString()
+  .substring(0, 10);
 }
 
 function scrollBarsConfigure() {
