@@ -38,7 +38,7 @@
               <small><span id="telegram-info" class="sm">Telegram</span><br></small>
           </div>
           </p>
-          <span class="badge rounded-pill text-bg-danger">Версия 0.0.1</span>
+          <span id="bot-api-version" class="badge rounded-pill text-bg-danger">Version</span>
 
         </div>
         <footer class="d-flex flex-wrap justify-content-center align-items-center py-1 my-2 border-top">
@@ -157,8 +157,8 @@
 
       <div class="input-group input-group-sm mb-1">
         <span class="input-group-text">Год и месяц</span>
-        <input type="month" name="start" min="2018-03" id="prod-messages-request-date"
-          class="form-control" aria-label="date input" aria-describedby="inputGroup-sizing-sm">
+        <input type="month" name="start" min="2018-03" id="prod-messages-request-date" class="form-control"
+          aria-label="date input" aria-describedby="inputGroup-sizing-sm">
       </div>
 
       <div class="d-grid gap-2 pt-4 pb-5">
@@ -225,8 +225,8 @@
       if (tg.themeParams.bg_color == "#ffffff") {
         document.documentElement.setAttribute('data-bs-theme', 'ligth');
       }
-      document.getElementById('telegram-info').innerHTML = 'Telegram platform: ' + tg.platform + 
-      'Bot API version: ' + tg.version;
+      document.getElementById('telegram-info').innerHTML = 'Telegram platform: ' + tg.platform;
+      document.getElementById('bot-api-version').innerHTML = 'Bot API ' + tg.version;
     }
 
     Telegram.WebApp.onEvent('themeChanged', function () {
