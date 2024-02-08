@@ -35,7 +35,7 @@
           <p>Информация по производству продукции.</p>
           <div>
             <p><i class="bi bi-telegram"></i>
-              <span id="telegram-info">Telegram</span><br>
+              <small><span id="telegram-info" class="sm">Telegram</span><br></small>
           </div>
           </p>
           <span class="badge rounded-pill text-bg-danger">Версия 0.0.1</span>
@@ -225,7 +225,8 @@
       if (tg.themeParams.bg_color == "#ffffff") {
         document.documentElement.setAttribute('data-bs-theme', 'ligth');
       }
-      document.getElementById('telegram-info').innerHTML = tg.platform + ' ' + tg.version;
+      document.getElementById('telegram-info').innerHTML = 'Telegram platform: ' + tg.platform + 
+      'Bot API version: ' + tg.version;
     }
 
     Telegram.WebApp.onEvent('themeChanged', function () {
