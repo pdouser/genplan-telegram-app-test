@@ -34,8 +34,8 @@
         <div class="offcanvas-body">
           <p>Информация по производству продукции.</p>
           <div>
-            <p><i class="bi bi-person-circle"></i>
-              <span id="logged-user">User</span><br>
+            <p><i class="bi bi-telegram"></i>
+              <span id="telegram-info">Telegram</span><br>
           </div>
           </p>
           <span class="badge rounded-pill text-bg-danger">Версия 0.0.1</span>
@@ -153,11 +153,11 @@
           <div class="feature-icon text-white rounded-3"> <i class="bi bi-stickies-fill text-white"></i></div>
           Сообщения по подготовке производства
       </div>
-      <p>Информация по подготовке производства за выбранный год-месяц.</p>
+      <p>Информация по подготовке производства за выбранный год и месяц.</p>
 
       <div class="input-group input-group-sm mb-1">
-        <span class="input-group-text">Месяц</span>
-        <input type="month" name="start" min="2018-03" value="2018-05" id="prod-messages-request-date"
+        <span class="input-group-text">Год и месяц</span>
+        <input type="month" name="start" min="2018-03" id="prod-messages-request-date"
           class="form-control" aria-label="date input" aria-describedby="inputGroup-sizing-sm">
       </div>
 
@@ -225,6 +225,7 @@
       if (tg.themeParams.bg_color == "#ffffff") {
         document.documentElement.setAttribute('data-bs-theme', 'ligth');
       }
+      document.getElementById('telegram-info').innerHTML = tg.platform + ' ' + tg.version;
     }
 
     Telegram.WebApp.onEvent('themeChanged', function () {
