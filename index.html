@@ -18,6 +18,7 @@
 
 <body>
 
+  </div>
   <nav class="navbar bg-body-tertiary fixed-top pb-1">
     <div class="container-fluid">
       <span class="navbar-brand">
@@ -153,12 +154,16 @@
           <div class="feature-icon text-white rounded-3"> <i class="bi bi-stickies-fill text-white"></i></div>
           Сообщения по подготовке производства
       </div>
-      <p>Информация по подготовке производства за выбранный год и месяц.</p>
+      <p>Информация по подготовке производства за выбранный год и месяц с фильтрацией по ключевым словам, разделенным '%'.</p>
 
       <div class="input-group input-group-sm mb-1">
         <span class="input-group-text">Год и месяц</span>
         <input type="month" name="start" min="2018-03" id="prod-messages-request-date" class="form-control"
           aria-label="date input" aria-describedby="inputGroup-sizing-sm">
+
+        <span class="input-group-text">Фильтр</span>
+        <input id="prod-messages-filter" class="form-control" aria-label="filter input"
+          aria-describedby="inputGroup-sizing-sm">
       </div>
 
       <div class="d-grid gap-2 pt-4 pb-5">
@@ -306,10 +311,13 @@
 
     messagesApplyButton.addEventListener("click", () => {
       let messages = 'messages';
+      let prodMessagesCriteria = document.getElementById("prod-messages-filter");
       let requestDate = document.getElementById("prod-messages-request-date").value;
+      const selectedValues = prodMessagesCriteria.value.split('%');
       let data = {
         action: messages,
         localDate: new Date(requestDate).toISOString().substring(0, 10),
+        criteria: selectedValues
       };
       tg.sendData(JSON.stringify(data));
     });
