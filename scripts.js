@@ -25,5 +25,4 @@ function scrollBarsConfigure() {
       elems[i].style["height"] = "";
     }
   }
-  document.getElementById("barchart-nav-link").click();
 }
