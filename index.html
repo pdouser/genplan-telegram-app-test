@@ -154,16 +154,22 @@
           <div class="feature-icon text-white rounded-3"> <i class="bi bi-stickies-fill text-white"></i></div>
           Сообщения по подготовке производства
       </div>
-      <p>Информация по подготовке производства за выбранный год и месяц с фильтрацией по ключевым словам, разделенным '%'.</p>
+      <p>Информация по подготовке производства за выбранный год и месяц с фильтрацией по ключевым словам, разделенным
+        '%'.</p>
 
       <div class="input-group input-group-sm mb-1">
         <span class="input-group-text">Год и месяц</span>
         <input type="month" name="start" min="2018-03" id="prod-messages-request-date" class="form-control"
           aria-label="date input" aria-describedby="inputGroup-sizing-sm">
+      </div>
 
-        <span class="input-group-text">Фильтр</span>
-        <input id="prod-messages-filter" class="form-control" aria-label="filter input"
-          aria-describedby="inputGroup-sizing-sm">
+      <div class="mb-1">
+        <label for="" class="form-label">Фильтр</label>
+        <div class="input-group input-group-sm">
+          <span class="input-group-text"><i class="bi bi-funnel-fill"></i></span>
+          <input id="prod-messages-filter" class="form-control" aria-label="filter input"
+            aria-describedby="inputGroup-sizing-sm">
+        </div>
       </div>
 
       <div class="d-grid gap-2 pt-4 pb-5">
