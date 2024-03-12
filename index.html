@@ -257,10 +257,24 @@
     let selectedDebtCriteria = document.getElementById("debt-criteria-filter");
     let prodMessagesFeature = document.getElementById("prod-messages-feature");
 
+    var isKeyboardOpen = false;
+    addEventListener('native.showkeyboard', keyboardShowHandler);
+    addEventListener('native.hidekeyboard', keyboardHideHandler);
     addEventListener("resize", (event) => {
-      scrollBarsConfigure();
+      if(isKeyboardOpen) {
+        scrollBarsConfigure();
+      }
+    });
+
+    function keyboardShowHandler(e) {
+      isKeyboardOpen = true;
+      document.documentElement.style.overflow = "hidden";
     }
-    );
+
+    function keyboardHideHandler(e) {
+      isKeyboardOpen = false;
+      document.documentElement.style.overflow = "scroll";
+    }
 
     prodMessagesFeature.addEventListener("click", () => {
       var bsOffcanvas = bootstrap.Offcanvas.getInstance(document.getElementById('offcanvasRight'));
